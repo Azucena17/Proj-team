@@ -23,4 +23,117 @@
                 text-align: center;
                 font-weight: bolder;
                 padding: 3px;
-                border: solid 2px black;   
+                border: solid 2px black;
+
+            }
+            #boton:hover{ /* Estilo que se activa al pasar el puntero sobre el boton */
+                background-color: lightcoral;
+                font-size: 22px;
+                border: groove 4px red;
+            }
+            
+        </style>
+         </head>
+         <body>
+             <h1>-El juego del ahorcado-</h1>
+         <canvas id="pantalla" width="960px" height="450px"> <!-- etiqueta del canvas con sus medidas en la pantalla -->
+        Tu navegador no soporta Canvas.
+        </canvas>
+        <!-- El boton que nos sirve para recargar la pagina y asi generar una nueva palabra y volver a jugar -->
+        <button id="boton" type="reset" onclick="javascript:window.location.reload();">Volver a Jugar</button>
+        <script>
+
+        /* Variables */
+        var ctx;
+            var canvas;
+            var palabra;
+            var letras = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
+            var colorTecla = "#585858";
+            var colorMargen = "red";
+            var inicioX = 200;
+            var inicioY = 300;
+            var lon = 35;
+            var margen = 20;
+            var pistaText = "";
+
+        /* Arreglos */
+            var teclas_array = new Array();
+            var letras_array = new Array();
+            var palabras_array = new Array();
+
+        /* Variables de control */
+            var aciertos = 0;
+            var errores = 0;
+
+        /* Palabras */
+            palabras_array.push("LEON");
+            palabras_array.push("CABALLO");
+            palabras_array.push("PERRO");
+            palabras_array.push("GATO");
+            palabras_array.push("LAGARTIJA");
+            palabras_array.push("RINOCERONTE");
+            palabras_array.push("TIBURON");
+            palabras_array.push("CARACOL");
+            palabras_array.push("ALACRAN");
+            palabras_array.push("ARAÑA");
+            palabras_array.push("CHAPULIN");
+            palabras_array.push("AVESTRUZ");
+            palabras_array.push("OCELOTE");
+            palabras_array.push("MUSARAÑA");
+            palabras_array.push("AGUILA");
+
+        /* Objetos */
+          function Tecla(x, y, ancho, alto, letra){
+                this.x = x;
+                this.y = y;
+                this.ancho = ancho;
+                this.alto = alto;
+                this.letra = letra;
+                this.dibuja = dibujaTecla;
+            }
+            
+          function Letra(x, y, ancho, alto, letra){
+                this.x = x;
+                this.y = y;
+                this.ancho = ancho;
+                this.alto = alto;
+                this.letra = letra;
+                this.dibuja = dibujaCajaLetra;
+                this.dibujaLetra = dibujaLetraLetra;
+            }
+
+        /* Funciones */
+        /* Dibua la letra y su caja */
+        function dibujaLetraLetra(){
+                var w = this.ancho;
+                var h = this.alto;
+                ctx.fillStyle = "black";
+                ctx.font = "bold 40px Courier";
+                ctx.fillText(this.letra, this.x+w/2-12, this.y+h/2+14);
+            }
+            function dibujaCajaLetra(){
+                ctx.fillStyle = "white";
+                ctx.strokeStyle = "black";
+                ctx.fillRect(this.x, this.y, this.ancho, this.alto);
+                ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+            }
+        
+        /// Funcion para dar una pista la usuario ////
+        function pistaFunction(palabra){
+                let pista = ""; // Se crea la variable local pista que contendra nuestra frase de pista
+                switch(palabra){  // Se crea un switch para poder controlar las pistas segun la palabra 
+                    case 'LEON':   // Se debera hacer un case por cada palabra 
+                        pista = "Ruge y es fuerte";
+                        break;     // Es importante el break en cada case 
+                    case 'CABALLO':
+                        pista = "Hay de tierra y hay de mar";
+                        break;
+                    case 'PERRO':
+                        pista = "El mejor amigo del hombre";
+                        break;
+                    case 'GATO':
+                        pista = "Son tiernos pero arañan";
+                        break;
+                    default:  // El defaul se puede omitir // 
+                        pista="No hay pista aun xP";
+                }
