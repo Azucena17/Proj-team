@@ -117,3 +117,23 @@
                 ctx.fillRect(this.x, this.y, this.ancho, this.alto);
                 ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
             }
+        
+        /// Funcion para dar una pista la usuario ////
+        function pistaFunction(palabra){
+                let pista = ""; // Se crea la variable local pista que contendra nuestra frase de pista
+                switch(palabra){  // Se crea un switch para poder controlar las pistas segun la palabra 
+                    case 'LEON':   // Se debera hacer un case por cada palabra 
+                        pista = "Ruge y es fuerte";
+                        break;     // Es importante el break en cada case 
+                    case 'CABALLO':
+                        pista = "Hay de tierra y hay de mar";
+                        break;
+                    case 'PERRO':
+                        pista = "El mejor amigo del hombre";
+                        break;
+                    case 'GATO':
+                        pista = "Son tiernos pero arañan";
+                        break;
+                    default:  // El defaul se puede omitir // 
+                        pista="No hay pista aun xP";
+                }
