@@ -1,0 +1,8 @@
+body{
+    background-image: url(gm.jpg);
+    width: 700px;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+   
