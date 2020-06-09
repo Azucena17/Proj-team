@@ -11,7 +11,7 @@ define(["src/Numfont"], function(Numfont) {
 
 			this.font = {
 				gray  : new Numfont(num,  0, 9),
-				blue  : new Numfont(num,  9, 9),
+				cyan  : new Numfont(num,  9, 9),
 				red   : new Numfont(num, 18, 9),
 				blue  : new Numfont(num, 27, 9),
 				orange: new Numfont(num, 36, 9),
