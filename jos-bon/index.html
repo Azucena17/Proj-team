@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Juego del ahorcado</title>
+        <title>Mi juego</title>
+        <link rel="stylesheet" href="estilo.css">
         <style>
             body{
                 width: 960px;
@@ -12,38 +13,38 @@
                 text-align: center;
             }
             #pantalla{
-                border: groove 8px gold;
-                background: lightgreen;
+                border: groove 8px blue;
+                background:;
 
             }
             #boton{
-                background-color: red;
-                color: white;
+                background-color:blue;
+                color: gold;
                 font-size: 20px;
                 text-align: center;
                 font-weight: bolder;
                 padding: 3px;
-                border: solid 2px black;
+                border: solid 2px skyblue;
 
             }
-            #boton:hover{ /* Estilo que se activa al pasar el puntero sobre el boton */
-                background-color: lightcoral;
+            #boton:hover{ 
+                background-color: goldenrod;
                 font-size: 22px;
-                border: groove 4px red;
+                border: groove 4px blue;
             }
             
         </style>
          </head>
          <body>
-             <h1>-El juego del ahorcado-</h1>
+             <h1>El juego del ahorcado by Osman-4Nima4</h1>
          <canvas id="pantalla" width="960px" height="450px"> 
         Tu navegador no soporta Canvas.
         </canvas>
         
-        <button id="boton" type="reset" onclick="javascript:window.location.reload();">Volver a Jugar</button>
+        <button id="boton" type="reset" onclick="javascript:window.location.reload();">VOLVER A JUGAR</button>
         <script>
 
-        /* Variables */
+       
         var ctx;
             var canvas;
             var palabra;
@@ -56,19 +57,19 @@
             var margen = 20;
             var pistaText = "";
 
-        /* Arreglos */
+   
             var teclas_array = new Array();
             var letras_array = new Array();
             var palabras_array = new Array();
 
-        /* Variables de control */
+     
             var aciertos = 0;
             var errores = 0;
 
-        /* Palabras */
-            palabras_array.push("LEON");
-            palabras_array.push("CABALLO");
+       
             palabras_array.push("PERRO");
+            palabras_array.push("CABALLO");
+            palabras_array.push("LEON");
             palabras_array.push("GATO");
             palabras_array.push("LAGARTIJA");
             palabras_array.push("RINOCERONTE");
@@ -76,13 +77,13 @@
             palabras_array.push("CARACOL");
             palabras_array.push("ALACRAN");
             palabras_array.push("ARAÑA");
-            palabras_array.push("CHAPULIN");
+            palabras_array.push("SALTAMONTES");
             palabras_array.push("AVESTRUZ");
             palabras_array.push("OCELOTE");
-            palabras_array.push("MUSARAÑA");
+            palabras_array.push("OSO");
             palabras_array.push("AGUILA");
 
-        /* Objetos */
+       
         function Tecla(x, y, ancho, alto, letra){
                 this.x = x;
                 this.y = y;
@@ -102,9 +103,9 @@
                 this.dibujaLetra = dibujaLetraLetra;
             }
 
-        /* Funciones */
+   
 
-        /* Dibujar Teclas*/
+    
         function dibujaTecla(){
                 ctx.fillStyle = colorTecla;
                 ctx.strokeStyle = colorMargen;
@@ -116,7 +117,7 @@
                 ctx.fillText(this.letra, this.x+this.ancho/2-5, this.y+this.alto/2+5);
             }
             
-        /* Dibua la letra y su caja */
+       
         function dibujaLetraLetra(){
                 var w = this.ancho;
                 var h = this.alto;
@@ -131,32 +132,32 @@
                 ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
             }
         
-        ///aqui inicias la funciones para dar pista al usuario///
+       
         function pistaFunction(palabra){
-                let pista = ""; // Se crea la variable local pista que contendra nuestra frase de pista
-                switch(palabra){  // Se crea un switch para poder controlar las pistas segun la palabra 
-                    case 'LEON':   // Se debera hacer un case por cada palabra 
-                        pista = "Ruge y es fuerte";
-                        break;     // Es importante el break en cada case 
+                let pista = ""; 
+                switch(palabra){  
+                    case 'LEON':   
+                        pista = "Es el rey de la selva!";
+                        break;    
                     case 'CABALLO':
-                        pista = "Hay de tierra y hay de mar";
+                        pista = "Tiene silla y no se puede sentar?";
                         break;
                     case 'PERRO':
-                        pista = "El mejor amigo del hombre";
+                        pista = "Es el fiel amigo del hombre";
                         break;
                     case 'GATO':
-                        pista = "Son tiernos pero arañan";
+                        pista = "¿Cuál es el animal que es dos veces animal?";
                         break;
-                    default:  // El defaul se puede omitir // 
-                        pista="No hay pista aun xP";
+                    default:  
+                        pista="Mmmmm no dare pistas";
                 }
 
-        ctx.fillStyle = "black";  // Aqui ponemos el color de la letra
-        ctx.font = "bold 20px Courier";  // aqui ponemos el tipo y tamaño de la letra
-        ctx.fillText(pista, 10, 15);  // aqui ponemos la frase en nuestro caso la variable pista , seguido de la posx y posy
+        ctx.fillStyle = "white";  
+        ctx.font = "bold 20px Times New Roman";  
+        ctx.fillText(pista, 10, 15);  
         }
 
-        /* Distribuir nuestro teclado con sus letras respectivas al acomodo de nuestro array */
+        
         function teclado(){
                 var ren = 0;
                 var col = 0;
@@ -184,7 +185,7 @@
                 }
             }
 
-        /* aqui obtenemos nuestra palabra aleatoriamente y la dividimos en letras */
+        
         function pintaPalabra(){
                 var p = Math.floor(Math.random()*palabras_array.length);
                 palabra = palabras_array[p];
@@ -207,7 +208,7 @@
                 }
             }
             
-        /* dibujar cadalzo y partes del pj segun sea el caso */
+     
         function horca(errores){
                 var imagen = new Image();
                 imagen.src = "imagenes/ahorcado"+errores+".png";
@@ -224,7 +225,7 @@
         *************************************************/
            }
             
-        /* ajustar coordenadas */
+
         function ajusta(xx, yy){
                 var posCanvas = canvas.getBoundingClientRect();
                 var x = xx-posCanvas.left;
@@ -232,7 +233,7 @@
                 return{x:x, y:y}
             }
         
-        /* Detecta tecla clickeada y la compara con las de la palabra ya elegida al azar */
+
         function selecciona(e){
                 var pos = ajusta(e.clientX, e.clientY);
                 var x = pos.x;
@@ -250,28 +251,28 @@
                 if (i < teclas_array.length){
                     for (var i = 0 ; i < palabra.length ; i++){ 
                         letra = palabra.substr(i, 1);
-                        if (letra == tecla.letra){ /* comparamos y vemos si acerto la letra */
+                        if (letra == tecla.letra){ 
                             caja = letras_array[i];
                             caja.dibujaLetra();
                             aciertos++;
                             bandera = true;
                         }
                     }
-                    if (bandera == false){ /* Si falla aumenta los errores y checa si perdio para mandar a la funcion gameover */
+                    if (bandera == false){ 
                         errores++;
                         horca(errores);
                         if (errores == 5) gameOver(errores);
                     }
-                    /* Borra la tecla que se a presionado */
+                   
                     ctx.clearRect(tecla.x - 1, tecla.y - 1, tecla.ancho + 2, tecla.alto + 2);
                     tecla.x - 1;
-                    /* checa si se gano y manda a la funcion gameover */
+                   
                     if (aciertos == palabra.length) gameOver(errores);
                 }
         
             }
             
-            /* Borramos las teclas y la palabra con sus cajas y mandamos msj segun el caso si se gano o se perdio */
+            
             function gameOver(errores){
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = "black";
@@ -288,7 +289,7 @@
                 ctx.fillText(palabra, lon, 380);
                 horca(errores);
             }
-         /* Detectar si se a cargado nuestro contexco en el canvas, iniciamos las funciones necesarias para jugar o se le manda msj de error segun sea el caso */
+         
          window.onload = function(){
                 canvas = document.getElementById("pantalla");
                 if (canvas && canvas.getContext){
@@ -303,6 +304,12 @@
                     }
                 }
             }
-        </script>
+        </script> <br>
+        <br>
+        <a href="../index.html">🕹🔴✔️PUCHALE AQUI PARA REGRESAR A LA PAGINA DE INICIO🕹🔴✔️</a> <br>
+        <br>
+        <a href="../jos-bon/instrucciones.html">😉🧾PUCHALE AQUI PARA VER LAS INSTRUCCIONES😉🧾</a><br>
+        <br>
+        <h1>Creditos para Proyectood.com</h1>
     </body>
 </html
