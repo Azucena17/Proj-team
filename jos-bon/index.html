@@ -83,7 +83,7 @@
             palabras_array.push("AGUILA");
 
         /* Objetos */
-          function Tecla(x, y, ancho, alto, letra){
+        function Tecla(x, y, ancho, alto, letra){
                 this.x = x;
                 this.y = y;
                 this.ancho = ancho;
@@ -92,7 +92,7 @@
                 this.dibuja = dibujaTecla;
             }
             
-          function Letra(x, y, ancho, alto, letra){
+        function Letra(x, y, ancho, alto, letra){
                 this.x = x;
                 this.y = y;
                 this.ancho = ancho;
@@ -103,6 +103,19 @@
             }
 
         /* Funciones */
+
+        /* Dibujar Teclas*/
+        function dibujaTecla(){
+                ctx.fillStyle = colorTecla;
+                ctx.strokeStyle = colorMargen;
+                ctx.fillRect(this.x, this.y, this.ancho, this.alto);
+                ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+                
+                ctx.fillStyle = "white";
+                ctx.font = "bold 20px courier";
+                ctx.fillText(this.letra, this.x+this.ancho/2-5, this.y+this.alto/2+5);
+            }
+            
         /* Dibua la letra y su caja */
         function dibujaLetraLetra(){
                 var w = this.ancho;
